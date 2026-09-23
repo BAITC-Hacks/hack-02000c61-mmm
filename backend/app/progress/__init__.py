@@ -1,0 +1,2 @@
+"""Career progress calculation boundary."""
+
