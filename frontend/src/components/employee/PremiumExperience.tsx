@@ -72,7 +72,7 @@ export function PremiumEmployeeHero({ employee, employees, onEmployeeChange }: {
 export function CareerJourney({ employee }: { employee: EmployeeProfile }) {
   const lastCompleted = employee.history.find((item) => item.status === 'completed')
   return (
-    <section id="journey" className="scroll-mt-24">
+    <section id="career-journey" className="scroll-mt-24">
       <div className="mb-6 flex items-end justify-between gap-4"><div><p className="eyebrow">Career GPS</p><h2 className="mt-2 text-2xl font-extrabold tracking-[-0.03em] text-white">Your route to the next milestone</h2><p className="mt-2 text-sm text-slate-500">A live path built from eligible activities—not a generic course catalog.</p></div><Route className="hidden h-7 w-7 text-emerald-400/70 sm:block" /></div>
       <div className="surface-card panel-grid overflow-hidden p-6 sm:p-8">
         <div className="relative ml-4 border-l border-dashed border-white/15 pl-8">
@@ -96,9 +96,9 @@ function JourneyNode({ state, eyebrow, title, detail, last = false }: { state: '
 export function RecommendationDeck({ employee, selectedId, onSelect, onPreview, onComplete, busy }: { employee: EmployeeProfile; selectedId: string | null; onSelect: (id: string) => void; onPreview: (recommendation: Recommendation) => void; onComplete: (recommendation: Recommendation) => void; busy: boolean }) {
   const [evidenceId, setEvidenceId] = useState<string | null>(employee.recommendations[0]?.id ?? null)
   const [primary, ...alternatives] = employee.recommendations
-  if (!primary) return <section id="activities" className="surface-card scroll-mt-24 border-dashed p-10 text-center"><Target className="mx-auto h-7 w-7 text-slate-700" /><h2 className="mt-4 text-xl font-bold text-white">No eligible next move</h2><p className="mx-auto mt-2 max-w-xl text-sm leading-6 text-slate-500">The engine found no voluntary activity that can currently improve an eligible target-grade gap. This profile is surfaced to HR for coverage review.</p></section>
+  if (!primary) return <section id="career-activities" className="surface-card scroll-mt-24 border-dashed p-10 text-center"><Target className="mx-auto h-7 w-7 text-slate-700" /><h2 className="mt-4 text-xl font-bold text-white">No eligible next move</h2><p className="mx-auto mt-2 max-w-xl text-sm leading-6 text-slate-500">The engine found no voluntary activity that can currently improve an eligible target-grade gap. This profile is surfaced to HR for coverage review.</p></section>
   return (
-    <section id="activities" className="scroll-mt-24">
+    <section id="career-activities" className="scroll-mt-24">
       <div className="mb-6"><p className="eyebrow">Career intelligence</p><h2 className="mt-2 text-2xl font-extrabold tracking-[-0.03em] text-white">The clearest moves from here</h2><p className="mt-2 text-sm text-slate-500">Career relevance leads. Predicted engagement only adjusts the ranking within a narrow bound.</p></div>
       <div className="grid items-start gap-5 xl:grid-cols-[1.45fr_.75fr]">
         <RecommendationCard recommendation={primary} rank={1} primary selected={selectedId === primary.id} evidenceOpen={evidenceId === primary.id} onEvidence={() => setEvidenceId(evidenceId === primary.id ? null : primary.id)} onSelect={() => onSelect(primary.id)} onPreview={() => onPreview(primary)} onComplete={() => onComplete(primary)} busy={busy} />

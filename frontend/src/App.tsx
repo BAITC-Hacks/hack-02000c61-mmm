@@ -18,7 +18,7 @@ function PageLoader() {
     <div className="grid min-h-[calc(100vh-4rem)] place-items-center">
       <div className="text-center">
         <div className="mx-auto h-9 w-9 animate-spin rounded-full border-4 border-emerald-100 border-t-emerald-600" />
-        <p className="mt-3 text-xs font-bold uppercase tracking-[0.16em] text-slate-400">Loading Career GPS</p>
+        <p className="mt-3 text-xs font-bold uppercase tracking-[0.16em] text-slate-400">Loading ÖRLE intelligence</p>
       </div>
     </div>
   )

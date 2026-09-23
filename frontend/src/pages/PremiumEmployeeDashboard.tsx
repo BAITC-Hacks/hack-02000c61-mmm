@@ -1,6 +1,6 @@
 import { LoaderCircle, TriangleAlert } from 'lucide-react'
 import { useEffect, useState } from 'react'
-import { useOutletContext } from 'react-router-dom'
+import { useLocation, useOutletContext } from 'react-router-dom'
 
 import {
   CareerJourney,
@@ -86,6 +86,7 @@ function profileFromBundle(bundle: EmployeeBundle): EmployeeProfile {
 
 export function EmployeeDashboard() {
   const { setProfile } = useOutletContext<ShellOutletContext>()
+  const location = useLocation()
   const [employees, setEmployees] = useState<EmployeeSummary[]>([])
   const [selectedEmployeeId, setSelectedEmployeeId] = useState('')
   const [bundle, setBundle] = useState<EmployeeBundle | null>(null)
@@ -117,6 +118,17 @@ export function EmployeeDashboard() {
     if (employee) setProfile({ name: employee.name, initials: employee.initials, role: `${employee.role} · ${employee.currentGrade}` })
   }, [employee?.id, employee?.readiness, setProfile])
 
+  useEffect(() => {
+    if (!employee) return
+    const sectionId = location.hash.slice(1)
+    if (!['career-top', 'career-journey', 'career-activities'].includes(sectionId)) return
+    const frame = requestAnimationFrame(() => {
+      const behavior = window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth'
+      document.getElementById(sectionId)?.scrollIntoView({ behavior, block: 'start' })
+    })
+    return () => cancelAnimationFrame(frame)
+  }, [employee?.id, location.hash])
+
   async function previewImpact(recommendation: Recommendation) {
     if (!employee) return
     setSelectedRecommendationId(recommendation.id); setPreviewRecommendation(recommendation); setPreview(null); setPreviewLoading(true); setError(null)
@@ -142,7 +154,7 @@ export function EmployeeDashboard() {
   if (error && !bundle) return <div className="mx-auto mt-20 max-w-xl rounded-2xl border border-rose-300/15 bg-rose-300/[0.04] p-8 text-center"><TriangleAlert className="mx-auto h-7 w-7 text-rose-300" /><h1 className="mt-4 text-xl font-extrabold">Career intelligence is unavailable</h1><p className="mt-2 text-sm text-slate-500">{error}</p></div>
   if (!employee) return <div className="grid min-h-[70vh] place-items-center"><LoaderCircle className="h-8 w-8 animate-spin text-emerald-300" /></div>
 
-  return <div className="mx-auto max-w-[1480px] px-4 py-7 sm:px-7 lg:px-10 lg:py-10">
+  return <div id="career-top" className="mx-auto max-w-[1480px] scroll-mt-20 px-4 py-7 sm:px-7 lg:px-10 lg:py-10">
     <PremiumEmployeeHero employee={employee} employees={employees} onEmployeeChange={setSelectedEmployeeId} />
     <div className="mt-16"><CareerJourney employee={employee} /></div>
     <div className="mt-16"><RecommendationDeck employee={employee} selectedId={selectedRecommendationId} onSelect={setSelectedRecommendationId} onPreview={previewImpact} onComplete={completeRecommendation} busy={busy} /></div>

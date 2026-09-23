@@ -1,23 +1,16 @@
-# Career Quest
+# ÖRLE
 
-## Demo & Full Version
+**AI Career Intelligence**
 
-> **Choose the evaluation path that matches what you want to review:**
->
-> | Evaluation path | What it is for |
-> | --- | --- |
-> | **Public Vercel demo** | **Quick UI/UX preview** of the frontend design and Career Quest visual concept. |
-> | **Full local version** | **Complete AI and data functionality** using the official HackAlem dataset. |
+*Your growth. Your path. Your next move.*
 
-### 1. Public Vercel demo — UI/UX preview
+ÖRLE is our solution for the Career Quest case in the Halyk Bank track of HackAlem AI.
 
-**Vercel URL: `[PLACEHOLDER — deployment URL will be added here]`**
+## Full local MVP
 
-The public deployment is intended for quickly evaluating the frontend design, user experience, and Career Quest visual concept. The official HackAlem dataset is restricted/confidential and is **not publicly deployed or distributed**. Accordingly, the Vercel demo should not be interpreted as containing the official dataset or the complete production backend.
+The full ÖRLE MVP is run locally using the **[Quick Start](#quick-start)** instructions.
 
-### 2. Full local version — complete solution
-
-Judges and reviewers who want to evaluate the complete solution should run Career Quest locally with the official dataset. The local version includes:
+Judges and reviewers who want to evaluate the complete solution should run ÖRLE locally with the official Career Quest dataset. The local version includes:
 
 - the official dataset;
 - Career Readiness Engine;
@@ -30,9 +23,7 @@ Judges and reviewers who want to evaluate the complete solution should run Caree
 
 Follow the **[Quick Start](#quick-start)** instructions to run the full version.
 
-**In short: Vercel = quick UI/UX preview. Local = complete AI/data functionality.**
-
-Career Quest is an explainable career-development navigator built on the official Career Quest dataset. It combines four deliberately separate layers:
+ÖRLE is an explainable career-development navigator built for the official Career Quest case and dataset. It combines four deliberately separate layers:
 
 ```text
 Official role requirements + employee skills

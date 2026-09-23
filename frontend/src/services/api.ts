@@ -13,7 +13,7 @@ async function request<T>(path: string, init?: RequestInit): Promise<T> {
   const response = await fetch(`${API_ROOT}${path}`, init)
   if (!response.ok) {
     const body = await response.json().catch(() => null) as { detail?: string } | null
-    throw new Error(body?.detail ?? `Career Quest API returned ${response.status}`)
+    throw new Error(body?.detail ?? `ÖRLE API returned ${response.status}`)
   }
   return response.json() as Promise<T>
 }

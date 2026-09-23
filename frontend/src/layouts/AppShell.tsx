@@ -10,6 +10,8 @@ import {
 import { useState } from 'react'
 import { NavLink, Outlet } from 'react-router-dom'
 
+import { BrandLogo } from '../components/BrandLogo'
+
 const navigation = [
   { to: '/employee', label: 'Career', icon: BriefcaseBusiness },
   { to: '/hr', label: 'HR Analytics', icon: ChartNoAxesColumnIncreasing },
@@ -47,12 +49,10 @@ export function AppShell() {
       <aside className="fixed inset-y-0 left-0 z-30 hidden w-[248px] flex-col overflow-hidden bg-[#0c2823] px-5 py-7 lg:flex">
         <div className="pointer-events-none absolute -left-24 top-1/2 h-64 w-64 rounded-full bg-emerald-400/10 blur-3xl" />
         <div className="relative flex items-center gap-3 px-2">
-          <div className="grid h-10 w-10 place-items-center rounded-xl bg-gradient-to-br from-emerald-300 to-[#d2a947] text-sm font-black text-[#0c2823] shadow-lg shadow-emerald-950/30">
-            CQ
-          </div>
+          <BrandLogo />
           <div>
-            <p className="text-base font-bold tracking-tight text-white">Career Quest</p>
-            <p className="text-[10px] font-semibold uppercase tracking-[0.22em] text-emerald-200/60">Career GPS</p>
+            <p className="text-base font-bold tracking-tight text-white">ÖRLE</p>
+            <p className="text-[10px] font-semibold uppercase tracking-[0.18em] text-emerald-200/60">AI Career Intelligence</p>
           </div>
         </div>
 
@@ -63,7 +63,7 @@ export function AppShell() {
 
         <div className="relative mt-auto rounded-2xl border border-white/10 bg-white/[0.06] p-4">
           <Sparkles className="h-5 w-5 text-amber-300" />
-          <p className="mt-3 text-sm font-semibold text-white">Your path, made visible.</p>
+          <p className="mt-3 text-sm font-semibold text-white">Your growth. Your path. Your next move.</p>
           <p className="mt-1 text-xs leading-5 text-white/50">Turn every development activity into measurable career momentum.</p>
         </div>
       </aside>
@@ -107,8 +107,8 @@ export function AppShell() {
           <aside className="relative h-full w-[280px] bg-[#0c2823] p-6 shadow-2xl">
             <div className="mb-10 flex items-center justify-between">
               <div className="flex items-center gap-3 text-white">
-                <div className="grid h-9 w-9 place-items-center rounded-xl bg-emerald-300 text-xs font-black text-ink">CQ</div>
-                <span className="font-bold">Career Quest</span>
+                <BrandLogo className="h-9 w-9" />
+                <span className="font-bold">ÖRLE</span>
               </div>
               <button type="button" aria-label="Close navigation" onClick={() => setMobileOpen(false)} className="text-white/60">
                 <X className="h-5 w-5" />
