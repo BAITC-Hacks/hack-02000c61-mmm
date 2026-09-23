@@ -15,9 +15,11 @@ import {
 import type { ParticipationMetric, SkillGapMetric, StatusMetric } from '../../types/analytics'
 
 const tooltipStyle = {
-  border: '1px solid #e5e9e5',
-  borderRadius: '12px',
-  boxShadow: '0 12px 30px rgba(16,42,38,.10)',
+  border: '1px solid rgba(255,255,255,.1)',
+  borderRadius: '10px',
+  background: '#111923',
+  color: '#dbe4e1',
+  boxShadow: '0 16px 40px rgba(0,0,0,.35)',
   fontSize: '12px',
 }
 
@@ -26,17 +28,17 @@ export function SkillGapChart({ data }: { data: SkillGapMetric[] }) {
     <article className="surface-card p-5 sm:p-6">
       <div>
         <p className="eyebrow">Organization signal</p>
-        <h2 className="mt-2 text-lg font-extrabold">Most common skill gaps</h2>
+        <h2 className="mt-2 text-lg font-extrabold text-white">Organization skill gaps</h2>
         <p className="mt-1 text-xs text-slate-500">Share of employees below official target requirements</p>
       </div>
       <div className="mt-6 h-[285px]">
         <ResponsiveContainer width="100%" height="100%">
           <BarChart data={data} layout="vertical" margin={{ top: 0, right: 22, left: 15, bottom: 0 }}>
-            <CartesianGrid horizontal={false} stroke="#edf0ed" />
-            <XAxis type="number" domain={[0, 100]} tickLine={false} axisLine={false} tick={{ fill: '#87938e', fontSize: 11 }} unit="%" />
-            <YAxis type="category" dataKey="skill" width={112} tickLine={false} axisLine={false} tick={{ fill: '#43534e', fontSize: 11, fontWeight: 600 }} />
-            <Tooltip contentStyle={tooltipStyle} cursor={{ fill: '#f4f7f4' }} formatter={(value) => [`${value}%`, 'Employees']} />
-            <Bar dataKey="percentage" fill="#178a69" radius={[0, 8, 8, 0]} barSize={17} />
+            <CartesianGrid horizontal={false} stroke="rgba(255,255,255,.05)" />
+            <XAxis type="number" domain={[0, 100]} tickLine={false} axisLine={false} tick={{ fill: '#52606d', fontSize: 10 }} unit="%" />
+            <YAxis type="category" dataKey="skill" width={120} tickLine={false} axisLine={false} tick={{ fill: '#a5b2ae', fontSize: 10, fontWeight: 600 }} />
+            <Tooltip contentStyle={tooltipStyle} cursor={{ fill: 'rgba(255,255,255,.025)' }} formatter={(value) => [`${value}%`, 'Employees']} />
+            <Bar dataKey="percentage" fill="#34d399" radius={[0, 5, 5, 0]} barSize={14} />
           </BarChart>
         </ResponsiveContainer>
       </div>
@@ -49,19 +51,19 @@ export function ParticipationChart({ data }: { data: ParticipationMetric[] }) {
     <article className="surface-card p-5 sm:p-6">
       <div>
         <p className="eyebrow">Engagement</p>
-        <h2 className="mt-2 text-lg font-extrabold">Participation by activity</h2>
+        <h2 className="mt-2 text-lg font-extrabold text-white">Participation by activity</h2>
         <p className="mt-1 text-xs text-slate-500">Official enrolled and completed activity counts</p>
       </div>
       <div className="mt-6 h-[285px]">
         <ResponsiveContainer width="100%" height="100%">
           <BarChart data={data} margin={{ top: 8, right: 0, left: -22, bottom: 0 }}>
-            <CartesianGrid vertical={false} stroke="#edf0ed" />
-            <XAxis dataKey="activity" tickLine={false} axisLine={false} tick={{ fill: '#66736e', fontSize: 10 }} />
-            <YAxis tickLine={false} axisLine={false} tick={{ fill: '#87938e', fontSize: 10 }} />
-            <Tooltip contentStyle={tooltipStyle} cursor={{ fill: '#f4f7f4' }} />
-            <Legend wrapperStyle={{ fontSize: '11px', paddingTop: '12px' }} />
-            <Bar dataKey="enrolled" name="Enrolled" fill="#cfe1da" radius={[7, 7, 0, 0]} barSize={17} />
-            <Bar dataKey="completed" name="Completed" fill="#178a69" radius={[7, 7, 0, 0]} barSize={17} />
+            <CartesianGrid vertical={false} stroke="rgba(255,255,255,.05)" />
+            <XAxis dataKey="activity" tickLine={false} axisLine={false} tick={{ fill: '#718078', fontSize: 10 }} />
+            <YAxis tickLine={false} axisLine={false} tick={{ fill: '#52606d', fontSize: 10 }} />
+            <Tooltip contentStyle={tooltipStyle} cursor={{ fill: 'rgba(255,255,255,.025)' }} />
+            <Legend wrapperStyle={{ fontSize: '11px', paddingTop: '12px', color: '#718078' }} />
+            <Bar dataKey="enrolled" name="Enrolled" fill="#24343a" radius={[5, 5, 0, 0]} barSize={17} />
+            <Bar dataKey="completed" name="Completed" fill="#34d399" radius={[5, 5, 0, 0]} barSize={17} />
           </BarChart>
         </ResponsiveContainer>
       </div>
@@ -76,7 +78,7 @@ export function DevelopmentStatusChart({ data }: { data: StatusMetric[] }) {
     <article className="surface-card p-5 sm:p-6">
       <div>
         <p className="eyebrow">Portfolio health</p>
-        <h2 className="mt-2 text-lg font-extrabold">Development status</h2>
+        <h2 className="mt-2 text-lg font-extrabold text-white">Development status</h2>
         <p className="mt-1 text-xs text-slate-500">Distribution from real target-grade readiness</p>
       </div>
       <div className="relative mt-5 h-[205px]">
@@ -89,7 +91,7 @@ export function DevelopmentStatusChart({ data }: { data: StatusMetric[] }) {
           </PieChart>
         </ResponsiveContainer>
         <div className="pointer-events-none absolute inset-0 grid place-items-center text-center">
-          <div><p className="text-3xl font-extrabold tracking-[-0.05em]">{total}</p><p className="text-[10px] font-bold uppercase tracking-wider text-slate-400">Employees</p></div>
+          <div><p className="text-3xl font-extrabold tracking-[-0.05em] text-white">{total}</p><p className="text-[10px] font-bold uppercase tracking-wider text-slate-600">Employees</p></div>
         </div>
       </div>
       <div className="mt-3 grid grid-cols-2 gap-3">

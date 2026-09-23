@@ -12,9 +12,16 @@ __pycache__/
 
 # Environment and editor files
 .env
-.env.local
+.env.*
+!.env.example
+*.pem
+*.key
+*.p12
+*.pfx
 .DS_Store
+.tmp/
 data/__MACOSX/
+data/case_*/
 .idea/
 .vscode/
 

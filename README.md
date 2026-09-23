@@ -1,5 +1,37 @@
 # Career Quest
 
+## Demo & Full Version
+
+> **Choose the evaluation path that matches what you want to review:**
+>
+> | Evaluation path | What it is for |
+> | --- | --- |
+> | **Public Vercel demo** | **Quick UI/UX preview** of the frontend design and Career Quest visual concept. |
+> | **Full local version** | **Complete AI and data functionality** using the official HackAlem dataset. |
+
+### 1. Public Vercel demo — UI/UX preview
+
+**Vercel URL: `[PLACEHOLDER — deployment URL will be added here]`**
+
+The public deployment is intended for quickly evaluating the frontend design, user experience, and Career Quest visual concept. The official HackAlem dataset is restricted/confidential and is **not publicly deployed or distributed**. Accordingly, the Vercel demo should not be interpreted as containing the official dataset or the complete production backend.
+
+### 2. Full local version — complete solution
+
+Judges and reviewers who want to evaluate the complete solution should run Career Quest locally with the official dataset. The local version includes:
+
+- the official dataset;
+- Career Readiness Engine;
+- Recommendation Engine;
+- trained ML Engagement Model;
+- What-if simulation;
+- Complete Activity with live reranking;
+- HR Analytics; and
+- development bottleneck detection.
+
+Follow the **[Quick Start](#quick-start)** instructions to run the full version.
+
+**In short: Vercel = quick UI/UX preview. Local = complete AI/data functionality.**
+
 Career Quest is an explainable career-development navigator built on the official Career Quest dataset. It combines four deliberately separate layers:
 
 ```text
@@ -141,7 +173,7 @@ The original visual design is preserved. The normal application path now uses re
 
 No mock data is used by the active employee or HR routes.
 
-## Run
+## Quick Start
 
 Python 3.11+ and Node.js 20+ are recommended.
 

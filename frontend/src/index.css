@@ -6,8 +6,8 @@
 
 :root {
   font-family: 'DM Sans', ui-sans-serif, system-ui, sans-serif;
-  color: #102a26;
-  background: #f5f7f3;
+  color: #f4f7f6;
+  background: #070b12;
   font-synthesis: none;
   text-rendering: optimizeLegibility;
 }
@@ -24,6 +24,10 @@ body {
   margin: 0;
   min-width: 320px;
   min-height: 100vh;
+  background:
+    radial-gradient(circle at 78% -10%, rgba(31, 190, 141, 0.09), transparent 30rem),
+    radial-gradient(circle at 35% 15%, rgba(33, 116, 155, 0.06), transparent 28rem),
+    #070b12;
 }
 
 button,
@@ -39,8 +43,8 @@ h4 {
 }
 
 ::selection {
-  color: #0c2823;
-  background: #bce9d7;
+  color: #03130e;
+  background: #58dbad;
 }
 
 ::-webkit-scrollbar {
@@ -48,26 +52,37 @@ h4 {
 }
 
 ::-webkit-scrollbar-track {
-  background: #eef2ed;
+  background: #080d14;
 }
 
 ::-webkit-scrollbar-thumb {
-  border: 3px solid #eef2ed;
+  border: 3px solid #080d14;
   border-radius: 999px;
-  background: #9db0a9;
+  background: #34433f;
 }
 
 @layer components {
   .surface-card {
-    @apply rounded-2xl border border-white/80 bg-white shadow-card;
+    @apply rounded-2xl border border-white/[0.08] bg-[#0e151e]/90 shadow-card backdrop-blur-xl;
   }
 
   .eyebrow {
-    @apply text-[10px] font-bold uppercase tracking-[0.2em] text-emerald-700;
+    @apply text-[10px] font-bold uppercase tracking-[0.22em] text-emerald-300/80;
   }
 
   .focus-ring {
-    @apply focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-500 focus-visible:ring-offset-2;
+    @apply focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-400 focus-visible:ring-offset-2 focus-visible:ring-offset-[#070b12];
+  }
+
+  .panel-grid {
+    background-image:
+      linear-gradient(rgba(255, 255, 255, 0.018) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255, 255, 255, 0.018) 1px, transparent 1px);
+    background-size: 28px 28px;
+  }
+
+  .text-balance {
+    text-wrap: balance;
   }
 }
 
@@ -84,5 +99,22 @@ h4 {
 
 .animate-rise {
   animation: rise-in 0.5s ease-out both;
+}
+
+@keyframes pulse-route {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(52, 211, 153, 0.2); }
+  50% { box-shadow: 0 0 0 8px rgba(52, 211, 153, 0); }
+}
+
+.animate-route {
+  animation: pulse-route 2.4s ease-out infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    scroll-behavior: auto !important;
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+  }
 }
 

@@ -152,6 +152,20 @@ export interface RecommendationApi {
   simulation: { skill_changes: SkillChange[] }
 }
 
+export interface SimulationResponse {
+  employee_id: string
+  event_id: string
+  activity_name: string
+  skill_changes: SkillChange[]
+  readiness_before: number
+  readiness_after: number
+  readiness_delta: number
+  critical_gaps_before: CareerRequirement[]
+  critical_gaps_after: CareerRequirement[]
+  critical_gaps_closed: string[]
+  eligibility?: { eligible: boolean; prerequisites_satisfied: boolean }
+}
+
 export interface HistoryApi {
   record_id: string
   activity_name: string

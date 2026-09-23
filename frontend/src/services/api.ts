@@ -4,6 +4,7 @@ import type {
   EmployeeSummary,
   HistoryApi,
   RecommendationApi,
+  SimulationResponse,
 } from '../types/career'
 
 const API_ROOT = import.meta.env.VITE_API_ROOT ?? '/api'
@@ -39,9 +40,15 @@ export async function getEmployeeBundle(employeeId: string): Promise<EmployeeBun
 }
 
 export interface CompletionResponse {
+  completed_event_id: string
+  simulation: SimulationResponse
   career: CareerResponse
   recommendations: RecommendationApi[]
   history: HistoryApi[]
+}
+
+export async function simulateActivity(employeeId: string, eventId: string): Promise<SimulationResponse> {
+  return request(`/employees/${employeeId}/simulate/${eventId}`, { method: 'POST' })
 }
 
 export async function completeActivity(employeeId: string, eventId: string): Promise<CompletionResponse> {

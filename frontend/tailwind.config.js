@@ -4,17 +4,18 @@ export default {
   theme: {
     extend: {
       colors: {
-        ink: '#102a26',
-        forest: '#0d5c4a',
-        mint: '#dff3ea',
-        gold: '#d2a947',
-        canvas: '#f5f7f3',
+        ink: '#f4f7f6',
+        forest: '#15a77b',
+        mint: '#b8f5dd',
+        gold: '#e3c26f',
+        canvas: '#070b12',
       },
       fontFamily: {
         sans: ['Inter', 'ui-sans-serif', 'system-ui', 'sans-serif'],
       },
       boxShadow: {
-        card: '0 14px 45px rgba(16, 42, 38, 0.08)',
+        card: '0 20px 60px rgba(0, 0, 0, 0.28)',
+        glow: '0 0 45px rgba(45, 212, 161, 0.12)',
       },
     },
   },
