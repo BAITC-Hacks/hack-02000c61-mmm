@@ -1,13 +1,20 @@
 import { ArrowUpRight, Target } from 'lucide-react'
 
-import { getReadinessLabel } from '../../utils/career'
+function getReadinessLabel(readiness: number): string {
+  if (readiness >= 80) return 'Nearly ready'
+  if (readiness >= 60) return 'Building readiness'
+  return 'Foundation in progress'
+}
 
 interface ReadinessCardProps {
   readiness: number
   targetGrade: string
+  satisfied: number
+  total: number
+  criticalGaps: number
 }
 
-export function ReadinessCard({ readiness, targetGrade }: ReadinessCardProps) {
+export function ReadinessCard({ readiness, targetGrade, satisfied, total, criticalGaps }: ReadinessCardProps) {
   const degrees = readiness * 3.6
 
   return (
@@ -38,7 +45,7 @@ export function ReadinessCard({ readiness, targetGrade }: ReadinessCardProps) {
         </div>
 
         <div className="mt-auto flex items-center justify-between border-t border-white/10 pt-4 text-xs">
-          <span className="text-white/45">Mock readiness indicator</span>
+          <span className="text-white/55">{satisfied}/{total} requirements · {criticalGaps} critical gaps</span>
           <span className="flex items-center gap-1 font-bold text-amber-300">Career GPS <ArrowUpRight className="h-3.5 w-3.5" /></span>
         </div>
       </div>

@@ -1,24 +1,24 @@
-import type { EmployeeProfile, EmployeeProgress, Recommendation } from '../../types/career'
+import type { EmployeeProfile, Recommendation } from '../../types/career'
 import { SectionHeader } from '../SectionHeader'
 import { RecommendationCard } from './RecommendationCard'
 
 interface NextStepsSectionProps {
   employee: EmployeeProfile
-  progress: EmployeeProgress
   recommendations: Recommendation[]
   selectedId: string | null
   onSelect: (recommendationId: string) => void
   onComplete: (recommendation: Recommendation) => void
+  busy?: boolean
 }
 
-export function NextStepsSection({ employee, progress, recommendations, selectedId, onSelect, onComplete }: NextStepsSectionProps) {
+export function NextStepsSection({ employee, recommendations, selectedId, onSelect, onComplete, busy = false }: NextStepsSectionProps) {
   return (
     <section>
       <SectionHeader
-        eyebrow="AI next steps"
+        eyebrow="Career intelligence"
         title="The clearest moves from here"
-        description="These temporary recommendations demonstrate the future explainable experience. Final ranking will come from the deterministic engine after official data arrives."
-        action={<span className="w-fit rounded-full bg-amber-50 px-3 py-1.5 text-xs font-bold text-amber-700 ring-1 ring-amber-200">Mock mode</span>}
+        description="Ranked from official target-grade gaps, activity impact, history, and a bounded engagement signal."
+        action={<span className="w-fit rounded-full bg-emerald-50 px-3 py-1.5 text-xs font-bold text-emerald-700 ring-1 ring-emerald-200">Live · Official data</span>}
       />
 
       {recommendations.length > 0 ? (
@@ -28,17 +28,17 @@ export function NextStepsSection({ employee, progress, recommendations, selected
               key={recommendation.id}
               recommendation={recommendation}
               rank={index + 1}
-              currentSkillLevel={progress.skillLevels[recommendation.skillId] ?? 0}
               selected={selectedId === recommendation.id}
               onSelect={() => onSelect(recommendation.id)}
               onComplete={() => onComplete(recommendation)}
+              busy={busy}
             />
           ))}
         </div>
       ) : (
         <div className="surface-card mt-6 p-8 text-center">
-          <p className="text-lg font-extrabold">Demo plan complete</p>
-          <p className="mt-2 text-sm text-slate-500">You completed every mock next step for {employee.name}. Switch profiles to continue the demo.</p>
+          <p className="text-lg font-extrabold">No eligible next step</p>
+          <p className="mt-2 text-sm text-slate-500">No current activity can improve an eligible target-grade gap for {employee.name}. HR can review activity coverage.</p>
         </div>
       )}
     </section>

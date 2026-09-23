@@ -6,10 +6,10 @@ import type { Recommendation } from '../../types/career'
 interface RecommendationCardProps {
   recommendation: Recommendation
   rank: number
-  currentSkillLevel: number
   selected: boolean
   onSelect: () => void
   onComplete: () => void
+  busy?: boolean
 }
 
 const priorityStyles = {
@@ -21,10 +21,10 @@ const priorityStyles = {
 export function RecommendationCard({
   recommendation,
   rank,
-  currentSkillLevel,
   selected,
   onSelect,
   onComplete,
+  busy = false,
 }: RecommendationCardProps) {
   const [evidenceOpen, setEvidenceOpen] = useState(rank === 1)
   const isPrimary = rank === 1
@@ -39,7 +39,7 @@ export function RecommendationCard({
       {isPrimary && (
         <div className="flex items-center justify-between bg-[#11382f] px-5 py-3 text-white">
           <span className="flex items-center gap-2 text-[10px] font-black uppercase tracking-[0.17em]"><Sparkles className="h-3.5 w-3.5 text-amber-300" /> AI Recommended Next Step</span>
-          <span className="text-[9px] font-semibold uppercase tracking-wider text-white/45">Demo recommendation</span>
+          <span className="text-[9px] font-semibold uppercase tracking-wider text-white/45">Score {recommendation.finalScore.toFixed(1)}</span>
         </div>
       )}
 
@@ -65,7 +65,7 @@ export function RecommendationCard({
         <p className="mt-5 text-sm leading-6 text-slate-500">{recommendation.description}</p>
 
         <div className="mt-5 grid grid-cols-2 gap-3 rounded-xl bg-slate-50 p-3 text-xs">
-          <div className="flex items-center gap-2 text-slate-500"><Target className="h-4 w-4 text-emerald-600" /><span><strong className="text-ink">{recommendation.skillName}</strong><br />{currentSkillLevel} → {currentSkillLevel + recommendation.skillGain}</span></div>
+          <div className="flex items-center gap-2 text-slate-500"><Target className="h-4 w-4 text-emerald-600" /><span><strong className="text-ink">{recommendation.skillName}</strong><br />{recommendation.affectedSkills[0]?.current_level ?? 0} → {recommendation.affectedSkills[0]?.projected_level ?? 0}</span></div>
           <div className="flex items-center gap-2 text-slate-500"><Clock3 className="h-4 w-4 text-emerald-600" /><span><strong className="text-ink">{recommendation.duration}</strong><br />{recommendation.format}</span></div>
         </div>
 
@@ -84,14 +84,29 @@ export function RecommendationCard({
 
         {evidenceOpen && (
           <ul className="mt-3 space-y-2 border-l-2 border-emerald-100 pl-4">
+            {recommendation.affectedSkills.map((skill) => (
+              <li key={skill.skill_id} className="flex gap-2 text-xs leading-5 text-slate-600">
+                <Check className="mt-0.5 h-3.5 w-3.5 shrink-0 text-emerald-600" />
+                <span><strong>{skill.skill_name}</strong>: current {skill.current_level}, required {skill.required_level}, projected {skill.projected_level}{skill.critical ? ' · Critical skill' : ''}</span>
+              </li>
+            ))}
             {recommendation.evidence.map((reason) => (
               <li key={reason} className="flex gap-2 text-xs leading-5 text-slate-500">
                 <Check className="mt-0.5 h-3.5 w-3.5 shrink-0 text-emerald-600" />
                 {reason}
               </li>
             ))}
+            {recommendation.comparison && <li className="flex gap-2 text-xs leading-5 text-slate-500"><Check className="mt-0.5 h-3.5 w-3.5 shrink-0 text-emerald-600" />{recommendation.comparison}</li>}
           </ul>
         )}
+
+        <button
+          type="button"
+          onClick={(event) => { event.stopPropagation(); onSelect() }}
+          className="focus-ring mt-5 flex w-full items-center justify-center gap-2 rounded-xl border border-emerald-200 bg-white px-4 py-2.5 text-sm font-bold text-emerald-800 hover:bg-emerald-50"
+        >
+          Preview impact <Target className="h-4 w-4" />
+        </button>
 
         <button
           type="button"
@@ -99,11 +114,12 @@ export function RecommendationCard({
             event.stopPropagation()
             onComplete()
           }}
-          className={`focus-ring mt-6 flex w-full items-center justify-center gap-2 rounded-xl px-4 py-3 text-sm font-bold transition-colors ${
+          disabled={busy}
+          className={`focus-ring mt-3 flex w-full items-center justify-center gap-2 rounded-xl px-4 py-3 text-sm font-bold transition-colors ${
             isPrimary ? 'bg-ink text-white hover:bg-forest' : 'bg-emerald-50 text-emerald-800 hover:bg-emerald-100'
           }`}
         >
-          Complete activity <ArrowRight className="h-4 w-4" />
+          {busy ? 'Updating…' : 'Complete activity'} <ArrowRight className="h-4 w-4" />
         </button>
       </div>
     </article>

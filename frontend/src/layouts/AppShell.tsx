@@ -86,7 +86,7 @@ export function AppShell() {
           </div>
           <div className="flex items-center gap-3">
             <span className="hidden rounded-full border border-emerald-200 bg-emerald-50 px-3 py-1 text-[10px] font-bold uppercase tracking-[0.14em] text-emerald-700 sm:inline-flex">
-              Demo mode
+              Live intelligence
             </span>
             <button type="button" aria-label="Notifications" className="relative grid h-9 w-9 place-items-center rounded-full bg-white text-slate-500 shadow-sm ring-1 ring-slate-200">
               <Bell className="h-4 w-4" />

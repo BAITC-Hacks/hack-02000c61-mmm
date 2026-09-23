@@ -1,10 +1,10 @@
 import { ChevronDown, MapPin } from 'lucide-react'
 
-import type { EmployeeProfile } from '../../types/career'
+import type { EmployeeProfile, EmployeeSummary } from '../../types/career'
 
 interface EmployeeHeroProps {
   employee: EmployeeProfile
-  employees: EmployeeProfile[]
+  employees: EmployeeSummary[]
   onEmployeeChange: (employeeId: string) => void
 }
 
@@ -35,8 +35,8 @@ export function EmployeeHero({ employee, employees, onEmployeeChange }: Employee
           className="focus-ring w-full appearance-none rounded-2xl border border-slate-200 bg-white py-3.5 pl-14 pr-10 text-sm font-semibold text-ink shadow-sm"
         >
           {employees.map((option) => (
-            <option key={option.id} value={option.id}>
-              {option.name} · {option.role}
+            <option key={option.employee_id} value={option.employee_id}>
+              {option.full_name} · {option.role}
             </option>
           ))}
         </select>

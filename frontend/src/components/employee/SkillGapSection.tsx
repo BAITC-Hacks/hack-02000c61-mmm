@@ -1,11 +1,10 @@
 import { CheckCircle2, TrendingUp } from 'lucide-react'
 
-import type { EmployeeProfile, EmployeeProgress } from '../../types/career'
+import type { EmployeeProfile } from '../../types/career'
 import { SectionHeader } from '../SectionHeader'
 
 interface SkillGapSectionProps {
   employee: EmployeeProfile
-  progress: EmployeeProgress
 }
 
 const categoryColors = {
@@ -15,23 +14,23 @@ const categoryColors = {
   Domain: 'bg-emerald-50 text-emerald-700',
 }
 
-export function SkillGapSection({ employee, progress }: SkillGapSectionProps) {
+export function SkillGapSection({ employee }: SkillGapSectionProps) {
   return (
     <section>
       <SectionHeader
         eyebrow="Capability map"
         title="What is shaping your readiness"
-        description={`Current levels compared with the temporary ${employee.targetGrade} target used in this demo.`}
+        description={`Current levels compared with official ${employee.targetRole} · ${employee.targetGrade} requirements.`}
         action={
           <span className="w-fit rounded-full bg-white px-3 py-1.5 text-xs font-semibold text-slate-500 shadow-sm ring-1 ring-slate-200">
-            Scale · 1 to 5
+            Official scale · 0 to 5
           </span>
         }
       />
 
       <div className="mt-6 grid gap-4 md:grid-cols-2">
         {employee.skills.map((skill, index) => {
-          const currentLevel = progress.skillLevels[skill.id] ?? skill.currentLevel
+          const currentLevel = skill.currentLevel
           const gap = Math.max(0, skill.requiredLevel - currentLevel)
           const completion = Math.min(100, (currentLevel / skill.requiredLevel) * 100)
 
@@ -42,7 +41,7 @@ export function SkillGapSection({ employee, progress }: SkillGapSectionProps) {
                   <span className={`inline-flex rounded-full px-2.5 py-1 text-[9px] font-bold uppercase tracking-[0.12em] ${categoryColors[skill.category]}`}>
                     {skill.category}
                   </span>
-                  <h3 className="mt-3 text-base font-extrabold">{skill.name}</h3>
+                  <h3 className="mt-3 text-base font-extrabold">{skill.name}{skill.critical && <span className="ml-2 text-[9px] uppercase tracking-wider text-rose-600">Critical</span>}</h3>
                 </div>
                 {gap === 0 ? (
                   <CheckCircle2 className="h-5 w-5 text-emerald-600" />

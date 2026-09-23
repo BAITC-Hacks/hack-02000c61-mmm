@@ -4,12 +4,12 @@ import { Navigate, Route, Routes } from 'react-router-dom'
 import { AppShell } from './layouts/AppShell'
 
 const EmployeeDashboard = lazy(async () => {
-  const module = await import('./pages/EmployeeDashboard')
+  const module = await import('./pages/EmployeeDashboardLive')
   return { default: module.EmployeeDashboard }
 })
 
 const HrDashboard = lazy(async () => {
-  const module = await import('./pages/HrDashboard')
+  const module = await import('./pages/HrDashboardLive')
   return { default: module.HrDashboard }
 })
 

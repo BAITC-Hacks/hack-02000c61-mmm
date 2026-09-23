@@ -1,0 +1,459 @@
+{
+  "model_version": "engagement-v1.1-language-free",
+  "dataset_version": "1.0",
+  "dataset_as_of_date": "2026-10-01",
+  "generated_at_utc": "2026-09-23T10:34:14.401573+00:00",
+  "target": {
+    "positive_status": "completed",
+    "negative_statuses": [
+      "declined",
+      "dropped",
+      "no_show"
+    ],
+    "excluded": [
+      "in_progress",
+      "overdue",
+      "all mandatory events"
+    ],
+    "samples": 1503,
+    "positive_samples": 1044,
+    "negative_samples": 459,
+    "positive_rate": 0.6946107784431138
+  },
+  "temporal_split": {
+    "validation_start": "2026-03-11",
+    "test_start": "2026-06-16",
+    "train": {
+      "samples": 1052,
+      "start_date": "2024-10-01",
+      "end_date": "2026-03-10",
+      "positive": 728,
+      "negative": 324,
+      "positive_rate": 0.6920152091254753
+    },
+    "validation": {
+      "samples": 224,
+      "start_date": "2026-03-11",
+      "end_date": "2026-06-15",
+      "positive": 166,
+      "negative": 58,
+      "positive_rate": 0.7410714285714286
+    },
+    "test": {
+      "samples": 227,
+      "start_date": "2026-06-16",
+      "end_date": "2026-09-30",
+      "positive": 150,
+      "negative": 77,
+      "positive_rate": 0.6607929515418502
+    }
+  },
+  "candidate_validation_metrics_at_0_5": {
+    "dummy_prior": {
+      "roc_auc": 0.5,
+      "average_precision": 0.7410714285714286,
+      "f1": 0.8512820512820513,
+      "precision": 0.7410714285714286,
+      "recall": 1.0,
+      "brier_score": 0.1942910789928601,
+      "threshold": 0.5,
+      "confusion_matrix": {
+        "true_negative": 0,
+        "false_positive": 58,
+        "false_negative": 0,
+        "true_positive": 166
+      }
+    },
+    "logistic_regression": {
+      "roc_auc": 0.6926672206065642,
+      "average_precision": 0.8684360750950089,
+      "f1": 0.8173913043478261,
+      "precision": 0.7877094972067039,
+      "recall": 0.8493975903614458,
+      "brier_score": 0.1888761145772124,
+      "threshold": 0.5,
+      "confusion_matrix": {
+        "true_negative": 20,
+        "false_positive": 38,
+        "false_negative": 25,
+        "true_positive": 141
+      }
+    },
+    "hist_gradient_boosting": {
+      "roc_auc": 0.5983589530535937,
+      "average_precision": 0.7910061098861261,
+      "f1": 0.7552870090634441,
+      "precision": 0.7575757575757576,
+      "recall": 0.7530120481927711,
+      "brier_score": 0.22280779062794925,
+      "threshold": 0.5,
+      "confusion_matrix": {
+        "true_negative": 18,
+        "false_positive": 40,
+        "false_negative": 41,
+        "true_positive": 125
+      }
+    }
+  },
+  "selected_model": "logistic_regression_language_free",
+  "selection_reason": "Language-free model selected for fairness; temporal performance is within the predefined 0.03 ROC-AUC/PR-AUC/Brier tolerance.",
+  "selected_threshold": 0.6200119193292251,
+  "selected_validation_metrics": {
+    "roc_auc": 0.6926672206065642,
+    "average_precision": 0.8684360750950089,
+    "f1": 0.7583892617449665,
+    "precision": 0.8560606060606061,
+    "recall": 0.6807228915662651,
+    "brier_score": 0.1888761145772124,
+    "threshold": 0.6200119193292251,
+    "confusion_matrix": {
+      "true_negative": 39,
+      "false_positive": 19,
+      "false_negative": 53,
+      "true_positive": 113
+    }
+  },
+  "test_metrics": {
+    "roc_auc": 0.6637229437229437,
+    "average_precision": 0.7545988089766231,
+    "f1": 0.7147766323024055,
+    "precision": 0.7375886524822695,
+    "recall": 0.6933333333333334,
+    "brier_score": 0.20507163742748333,
+    "threshold": 0.6200119193292251,
+    "confusion_matrix": {
+      "true_negative": 40,
+      "false_positive": 37,
+      "false_negative": 46,
+      "true_positive": 104
+    }
+  },
+  "dummy_test_metrics": {
+    "roc_auc": 0.5,
+    "average_precision": 0.6607929515418502,
+    "f1": 0.7957559681697612,
+    "precision": 0.6607929515418502,
+    "recall": 1.0,
+    "brier_score": 0.22512045610307843,
+    "threshold": 0.5,
+    "confusion_matrix": {
+      "true_negative": 0,
+      "false_positive": 77,
+      "false_negative": 0,
+      "true_positive": 150
+    }
+  },
+  "language_removal_comparison": {
+    "same_temporal_rows": true,
+    "performance_close": true,
+    "tolerance": 0.03,
+    "legacy_with_preferred_language": {
+      "feature_count": 29,
+      "validation_threshold": 0.7159802961009618,
+      "test_metrics": {
+        "roc_auc": 0.6768831168831169,
+        "average_precision": 0.7711474908233356,
+        "f1": 0.6588235294117647,
+        "precision": 0.8,
+        "recall": 0.56,
+        "brier_score": 0.20233935861087105,
+        "threshold": 0.7159802961009618,
+        "confusion_matrix": {
+          "true_negative": 56,
+          "false_positive": 21,
+          "false_negative": 66,
+          "true_positive": 84
+        }
+      }
+    },
+    "final_language_free": {
+      "feature_count": 28,
+      "validation_threshold": 0.6200119193292251,
+      "test_metrics": {
+        "roc_auc": 0.6637229437229437,
+        "average_precision": 0.7545988089766231,
+        "f1": 0.7147766323024055,
+        "precision": 0.7375886524822695,
+        "recall": 0.6933333333333334,
+        "brier_score": 0.20507163742748333,
+        "threshold": 0.6200119193292251,
+        "confusion_matrix": {
+          "true_negative": 40,
+          "false_positive": 37,
+          "false_negative": 46,
+          "true_positive": 104
+        }
+      }
+    },
+    "test_metric_delta_new_minus_old": {
+      "roc_auc": -0.01316017316017315,
+      "average_precision": -0.016548681846712432,
+      "f1": 0.055953102890640816,
+      "precision": -0.06241134751773059,
+      "recall": 0.1333333333333333,
+      "brier_score": 0.0027322788166122824
+    }
+  },
+  "permutation_importance": [
+    {
+      "feature": "assigned_by",
+      "average_precision_decrease": 0.05350683241305456,
+      "std": 0.02484704233918716
+    },
+    {
+      "feature": "prior_no_show_count",
+      "average_precision_decrease": 0.011620916277080945,
+      "std": 0.011910416132717627
+    },
+    {
+      "feature": "same_format_completion_rate",
+      "average_precision_decrease": 0.002369100907595728,
+      "std": 0.005847080191766218
+    },
+    {
+      "feature": "duration_hours",
+      "average_precision_decrease": 0.0020450127821787954,
+      "std": 0.009237077281951975
+    },
+    {
+      "feature": "has_prior_history",
+      "average_precision_decrease": 0.0011005366348434352,
+      "std": 0.005064917251187718
+    },
+    {
+      "feature": "target_role_match",
+      "average_precision_decrease": 0.0,
+      "std": 0.0
+    },
+    {
+      "feature": "same_type_completion_rate",
+      "average_precision_decrease": -0.00041290048256260593,
+      "std": 0.0016770911761848912
+    },
+    {
+      "feature": "tenure_at_event_months",
+      "average_precision_decrease": -0.0007864745379016381,
+      "std": 0.01019047406637758
+    },
+    {
+      "feature": "prior_completed_count",
+      "average_precision_decrease": -0.0010461296637147121,
+      "std": 0.0071995784785920365
+    },
+    {
+      "feature": "prior_activity_count",
+      "average_precision_decrease": -0.0012194074411446265,
+      "std": 0.00249388743421604
+    },
+    {
+      "feature": "same_type_prior_count",
+      "average_precision_decrease": -0.0014555215310593673,
+      "std": 0.003855612190386311
+    },
+    {
+      "feature": "target_grade_match",
+      "average_precision_decrease": -0.0020019385333177988,
+      "std": 0.002977053205960113
+    },
+    {
+      "feature": "recent_90d_count",
+      "average_precision_decrease": -0.002069004466142538,
+      "std": 0.003739322131480269
+    },
+    {
+      "feature": "prior_dropped_count",
+      "average_precision_decrease": -0.002807316391081782,
+      "std": 0.0010834326823250195
+    },
+    {
+      "feature": "event_type",
+      "average_precision_decrease": -0.002954547949438785,
+      "std": 0.011340003626523317
+    },
+    {
+      "feature": "event_format",
+      "average_precision_decrease": -0.0030492847877578054,
+      "std": 0.004039976074206555
+    },
+    {
+      "feature": "employee_role",
+      "average_precision_decrease": -0.0031056222800782407,
+      "std": 0.00950008204650722
+    },
+    {
+      "feature": "prerequisite_required_sum",
+      "average_precision_decrease": -0.0036595301226293566,
+      "std": 0.003257010256733337
+    },
+    {
+      "feature": "developed_skill_count",
+      "average_precision_decrease": -0.0038107414125499615,
+      "std": 0.0023901657672001204
+    },
+    {
+      "feature": "total_skill_gain",
+      "average_precision_decrease": -0.0038107414125499615,
+      "std": 0.0023901657672001204
+    },
+    {
+      "feature": "prerequisite_count",
+      "average_precision_decrease": -0.004828856757170147,
+      "std": 0.0035369885231243633
+    },
+    {
+      "feature": "days_since_last_activity",
+      "average_precision_decrease": -0.006284291033007422,
+      "std": 0.003459982470134183
+    },
+    {
+      "feature": "employee_grade",
+      "average_precision_decrease": -0.007336457684803771,
+      "std": 0.006376074999636664
+    },
+    {
+      "feature": "work_format",
+      "average_precision_decrease": -0.011919870294958262,
+      "std": 0.005195514096429676
+    },
+    {
+      "feature": "same_format_prior_count",
+      "average_precision_decrease": -0.016429435617189698,
+      "std": 0.012100987557634986
+    },
+    {
+      "feature": "prior_completion_rate",
+      "average_precision_decrease": -0.017325360915420633,
+      "std": 0.0052865147045687896
+    },
+    {
+      "feature": "prior_declined_count",
+      "average_precision_decrease": -0.018334993083852398,
+      "std": 0.009746759128424418
+    },
+    {
+      "feature": "recent_90d_completion_rate",
+      "average_precision_decrease": -0.02813647955511207,
+      "std": 0.007191817080965123
+    }
+  ],
+  "coefficient_diagnostics": {
+    "strongest_positive": [
+      {
+        "feature": "assigned_by_self",
+        "coefficient": 0.8019694100548239
+      },
+      {
+        "feature": "employee_role_Sales Manager",
+        "coefficient": 0.2701366343750555
+      },
+      {
+        "feature": "event_type_certification",
+        "coefficient": 0.2307783146520963
+      },
+      {
+        "feature": "employee_role_Product Manager",
+        "coefficient": 0.2164449690345827
+      },
+      {
+        "feature": "event_format_self_paced",
+        "coefficient": 0.19707445168598428
+      },
+      {
+        "feature": "work_format_hybrid",
+        "coefficient": 0.17278913962017195
+      },
+      {
+        "feature": "employee_grade_Junior",
+        "coefficient": 0.1699521122988417
+      },
+      {
+        "feature": "event_type_mentoring",
+        "coefficient": 0.14347060878228624
+      },
+      {
+        "feature": "same_format_completion_rate",
+        "coefficient": 0.14343943228664782
+      },
+      {
+        "feature": "tenure_at_event_months",
+        "coefficient": 0.13924035346233574
+      }
+    ],
+    "strongest_negative": [
+      {
+        "feature": "assigned_by_manager",
+        "coefficient": -0.4364143797556446
+      },
+      {
+        "feature": "assigned_by_hr",
+        "coefficient": -0.3312602826126595
+      },
+      {
+        "feature": "employee_role_Backend Engineer",
+        "coefficient": -0.31147447700750974
+      },
+      {
+        "feature": "event_type_meetup",
+        "coefficient": -0.3090863621273006
+      },
+      {
+        "feature": "work_format_remote",
+        "coefficient": -0.19250646751609812
+      },
+      {
+        "feature": "prior_no_show_count",
+        "coefficient": -0.18957780157185128
+      },
+      {
+        "feature": "duration_hours",
+        "coefficient": -0.18844915988224673
+      },
+      {
+        "feature": "employee_role_Data Analyst",
+        "coefficient": -0.1523855711047014
+      },
+      {
+        "feature": "prior_completion_rate",
+        "coefficient": -0.13385380227933447
+      },
+      {
+        "feature": "event_format_offline",
+        "coefficient": -0.13262143629521875
+      }
+    ]
+  },
+  "features": {
+    "categorical": [
+      "employee_role",
+      "employee_grade",
+      "work_format",
+      "event_type",
+      "event_format",
+      "assigned_by"
+    ],
+    "numeric": [
+      "tenure_at_event_months",
+      "duration_hours",
+      "developed_skill_count",
+      "total_skill_gain",
+      "prerequisite_count",
+      "prerequisite_required_sum",
+      "target_role_match",
+      "target_grade_match",
+      "has_prior_history",
+      "prior_activity_count",
+      "prior_completed_count",
+      "prior_no_show_count",
+      "prior_dropped_count",
+      "prior_declined_count",
+      "prior_completion_rate",
+      "same_type_prior_count",
+      "same_type_completion_rate",
+      "same_format_prior_count",
+      "same_format_completion_rate",
+      "recent_90d_count",
+      "recent_90d_completion_rate",
+      "days_since_last_activity"
+    ]
+  }
+}
